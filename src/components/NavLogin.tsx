@@ -42,8 +42,7 @@ export default function NavLogin() {
           </svg>
         </button>
 
-        {/* Menu items */}
-        <div
+        {/* <div
           className={`${isOpen ? "block" : "hidden"} w-full md:block md:w-auto`}
           id="navbar-default"
         >
@@ -90,7 +89,7 @@ export default function NavLogin() {
               </Link>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </nav>
   );

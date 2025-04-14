@@ -6,27 +6,18 @@ import {
   FiUsers,
   FiLogOut,
   FiSettings,
-  FiFileText,
   FiActivity,
-  FiSearch,
   FiMenu,
   FiChevronLeft,
   FiX,
   FiMonitor,
   FiUserCheck,
+  FiChevronRight,
 } from "react-icons/fi";
 
 export default function Drawer() {
   const [isOpen, setIsOpen] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(false);
-
-  const toggleDrawer = () => {
-    if (isOpen) {
-      setIsCollapsed(!isCollapsed);
-    } else {
-      setIsOpen(true);
-    }
-  };
 
   const closeDrawer = () => {
     if (isCollapsed) {
@@ -39,13 +30,12 @@ export default function Drawer() {
 
   return (
     <div className="flex">
-      Toggle Button
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed left-1 top-90 z-30 p-2 rounded-md bg-gray-500 hover:bg-gray-800"
+          className="fixed left-0 top-90 z-30 p-2 rounded-md text-black hover:text-blue-400 bg-white- 50 hover:bg-white"
         >
-          <FiMenu className="w-5 h-5" />
+          <FiChevronRight className="w-5 h-5" />
         </button>
       )}
       {/* Drawer */}
@@ -73,20 +63,6 @@ export default function Drawer() {
 
         {/* Drawer Content */}
         <div className="overflow-y-auto h-full">
-          {/* Search (only shown when expanded) */}
-          {!isCollapsed && (
-            <div className="p-3">
-              <div className="relative">
-                <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  className="w-full pl-10 pr-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                />
-              </div>
-            </div>
-          )}
-
           {/* Menu Items */}
           <nav className="p-2">
             <ul className="space-y-1">
