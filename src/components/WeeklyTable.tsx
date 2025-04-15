@@ -1,232 +1,357 @@
-import * as React from "react";
-import {
-  FiChevronLeft,
-  FiChevronRight,
-  FiChevronsLeft,
-  FiChevronsRight,
-} from "react-icons/fi";
+"use client";
+import { useState } from "react";
 
-interface Column {
-  id: "name" | "code" | "population" | "size" | "density";
-  label: string;
-  minWidth?: number;
-  align?: "right";
-  format?: (value: number) => string;
-}
-
-const columns: readonly Column[] = [
-  { id: "name", label: "Name", minWidth: 170 },
-  { id: "code", label: "ISO\u00a0Code", minWidth: 100 },
-  {
-    id: "population",
-    label: "Population",
-    minWidth: 170,
-    align: "right",
-    format: (value: number) => value.toLocaleString("en-US"),
-  },
-  {
-    id: "size",
-    label: "Size\u00a0(km\u00b2)",
-    minWidth: 170,
-    align: "right",
-    format: (value: number) => value.toLocaleString("en-US"),
-  },
-  {
-    id: "density",
-    label: "Density",
-    minWidth: 170,
-    align: "right",
-    format: (value: number) => value.toFixed(2),
-  },
-];
-
-interface Data {
+interface TableData {
+  id: number;
+  date: string;
   name: string;
-  code: string;
-  population: number;
-  size: number;
-  density: number;
+  purpose: string;
+  product: string;
+  remarks: string;
 }
 
-function createData(
-  name: string,
-  code: string,
-  population: number,
-  size: number
-): Data {
-  const density = population / size;
-  return { name, code, population, size, density };
-}
+export default function CoopTable() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [editId, setEditId] = useState<number | null>(null);
+  const [editData, setEditData] = useState<Partial<TableData>>({});
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
 
-const rows = [
-  createData("India", "IN", 1324171354, 3287263),
-  createData("China", "CN", 1403500365, 9596961),
-  createData("Italy", "IT", 60483973, 301340),
-  createData("United States", "US", 327167434, 9833520),
-  createData("Canada", "CA", 37602103, 9984670),
-  createData("Australia", "AU", 25475400, 7692024),
-  createData("Germany", "DE", 83019200, 357578),
-  createData("Ireland", "IE", 4857000, 70273),
-  createData("Mexico", "MX", 126577691, 1972550),
-  createData("Japan", "JP", 126317000, 377973),
-  createData("France", "FR", 67022000, 640679),
-  createData("United Kingdom", "GB", 67545757, 242495),
-  createData("Russia", "RU", 146793744, 17098246),
-  createData("Nigeria", "NG", 200962417, 923768),
-  createData("Brazil", "BR", 210147125, 8515767),
-];
+  // Sample data
+  const [data, setData] = useState<TableData[]>([
+    {
+      id: 1,
+      date: "2023-10-15",
+      name: "ABC Cooperative",
+      purpose: "Loan application",
+      product: "Agricultural loan",
+      remarks: "Approved",
+    },
+    {
+      id: 2,
+      date: "2023-10-16",
+      name: "XYZ Non-Cooperative",
+      purpose: "Membership",
+      product: "Savings account",
+      remarks: "Pending",
+    },
+    {
+      id: 3,
+      date: "2023-10-17",
+      name: "DEF Cooperative",
+      purpose: "Investment",
+      product: "Time deposit",
+      remarks: "Rejected",
+    },
+    {
+      id: 4,
+      date: "2023-10-18",
+      name: "GHI Non-Cooperative",
+      purpose: "Consultation",
+      product: "Financial advice",
+      remarks: "Completed",
+    },
+    {
+      id: 5,
+      date: "2023-10-19",
+      name: "JKL Cooperative",
+      purpose: "Loan payment",
+      product: "Agricultural loan",
+      remarks: "On time",
+    },
+    {
+      id: 6,
+      date: "2023-10-20",
+      name: "MNO Cooperative",
+      purpose: "Loan application",
+      product: "Business loan",
+      remarks: "Processing",
+    },
+    {
+      id: 7,
+      date: "2023-10-21",
+      name: "PQR Cooperative",
+      purpose: "Loan inquiry",
+      product: "Personal loan",
+      remarks: "Inquired",
+    },
+    {
+      id: 8,
+      date: "2023-10-22",
+      name: "STU Non-Cooperative",
+      purpose: "Account opening",
+      product: "Current account",
+      remarks: "Approved",
+    },
+    {
+      id: 9,
+      date: "2023-10-23",
+      name: "VWX Cooperative",
+      purpose: "Loan renewal",
+      product: "Agricultural loan",
+      remarks: "Renewed",
+    },
+    {
+      id: 10,
+      date: "2023-10-24",
+      name: "YZA Cooperative",
+      purpose: "Training",
+      product: "Financial literacy",
+      remarks: "Completed",
+    },
+    {
+      id: 11,
+      date: "2023-10-25",
+      name: "BCD Non-Cooperative",
+      purpose: "Consultation",
+      product: "Investment advice",
+      remarks: "Pending",
+    },
+    {
+      id: 12,
+      date: "2023-10-26",
+      name: "EFG Cooperative",
+      purpose: "Loan application",
+      product: "Housing loan",
+      remarks: "Processing",
+    },
+  ]);
 
-export default function StickyHeadTable() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  // Calculate pagination
+  const totalPages = Math.ceil(data.length / rowsPerPage);
+  const currentData = data.slice(
+    (currentPage - 1) * rowsPerPage,
+    currentPage * rowsPerPage
+  );
 
-  const handleChangePage = (newPage: number) => {
-    setPage(newPage);
+  const handleEdit = (id: number) => {
+    setEditId(id);
+    const itemToEdit = data.find((item) => item.id === id);
+    if (itemToEdit) {
+      setEditData({ ...itemToEdit });
+    }
   };
 
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLSelectElement>
+  const handleSave = (id: number) => {
+    setData(
+      data.map((item) => (item.id === id ? { ...item, ...editData } : item))
+    );
+    setEditId(null);
+  };
+
+  const handleCancel = () => {
+    setEditId(null);
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
+    const { name, value } = e.target;
+    setEditData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Calculate the total number of pages
-  const totalPages = Math.ceil(rows.length / rowsPerPage);
+  const handleRowsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setRowsPerPage(Number(e.target.value));
+    setCurrentPage(1); // Reset to first page when changing rows per page
+  };
 
   return (
-    <div className="w-full overflow-hidden shadow-sm rounded-lg border border-gray-200">
-      <div className="overflow-auto max-h-[440px]">
-        <table className="w-full">
-          <thead className="sticky top-0 bg-gray-50">
-            <tr>
-              {columns.map((column) => (
-                <th
-                  key={column.id}
-                  className={`p-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider ${
-                    column.align === "right" ? "text-right" : "text-left"
-                  }`}
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.label}
+    <div className="container mx-auto px-4 py-8">
+      <div className="overflow-x-auto border border-gray-200 rounded-lg">
+        <div className="overflow-auto max-h-[500px]">
+          <table className="min-w-full bg-white divide-y divide-gray-200">
+            <thead className="bg-gray-100 sticky top-0">
+              <tr>
+                <th className="py-3 px-4 text-left text-gray-800 font-semibold hover:bg-gray-200 transition-colors duration-150">
+                  Date
                 </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <tr key={row.code} className="hover:bg-gray-50">
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <td
-                          key={column.id}
-                          className={`p-4 text-sm text-gray-500 ${
-                            column.align === "right"
-                              ? "text-right"
-                              : "text-left"
-                          }`}
+                <th className="py-3 px-4 text-left text-gray-800 font-semibold hover:bg-gray-200 transition-colors duration-150">
+                  Name of COOP/NON COOPS
+                </th>
+                <th className="py-3 px-4 text-left text-gray-800 font-semibold hover:bg-gray-200 transition-colors duration-150">
+                  PURPOSE
+                </th>
+                <th className="py-3 px-4 text-left text-gray-800 font-semibold hover:bg-gray-200 transition-colors duration-150">
+                  PRODUCT
+                </th>
+                <th className="py-3 px-4 text-left text-gray-800 font-semibold hover:bg-gray-200 transition-colors duration-150">
+                  REMARKS
+                </th>
+                <th className="py-3 px-4 text-left text-gray-800 font-semibold hover:bg-gray-200 transition-colors duration-150">
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody className="text-gray-800 divide-y divide-gray-200">
+              {currentData.map((item) => (
+                <tr key={item.id} className="hover:bg-gray-50">
+                  <td className="py-3 px-4 hover:bg-gray-100 transition-colors duration-150">
+                    {editId === item.id ? (
+                      <input
+                        type="date"
+                        name="date"
+                        value={editData.date || ""}
+                        onChange={handleChange}
+                        className="border rounded px-2 py-1 w-full"
+                      />
+                    ) : (
+                      item.date
+                    )}
+                  </td>
+                  <td className="py-3 px-4 hover:bg-gray-100 transition-colors duration-150">
+                    {editId === item.id ? (
+                      <input
+                        type="text"
+                        name="name"
+                        value={editData.name || ""}
+                        onChange={handleChange}
+                        className="border rounded px-2 py-1 w-full"
+                      />
+                    ) : (
+                      item.name
+                    )}
+                  </td>
+                  <td className="py-3 px-4 hover:bg-gray-100 transition-colors duration-150">
+                    {editId === item.id ? (
+                      <input
+                        type="text"
+                        name="purpose"
+                        value={editData.purpose || ""}
+                        onChange={handleChange}
+                        className="border rounded px-2 py-1 w-full"
+                      />
+                    ) : (
+                      item.purpose
+                    )}
+                  </td>
+                  <td className="py-3 px-4 hover:bg-gray-100 transition-colors duration-150">
+                    {editId === item.id ? (
+                      <input
+                        type="text"
+                        name="product"
+                        value={editData.product || ""}
+                        onChange={handleChange}
+                        className="border rounded px-2 py-1 w-full"
+                      />
+                    ) : (
+                      item.product
+                    )}
+                  </td>
+                  <td className="py-3 px-4 hover:bg-gray-100 transition-colors duration-150">
+                    {editId === item.id ? (
+                      <textarea
+                        name="remarks"
+                        value={editData.remarks || ""}
+                        onChange={handleChange}
+                        className="border rounded px-2 py-1 w-full"
+                        rows={2}
+                      />
+                    ) : (
+                      item.remarks
+                    )}
+                  </td>
+                  <td className="py-3 px-4 hover:bg-gray-100 transition-colors duration-150">
+                    {editId === item.id ? (
+                      <div className="flex space-x-2">
+                        <button
+                          onClick={() => handleSave(item.id)}
+                          className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition-colors duration-150"
                         >
-                          {column.format && typeof value === "number"
-                            ? column.format(value)
-                            : value}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Custom Pagination */}
-      <div className="flex items-center justify-between px-4 py-3 bg-white border-t border-gray-200 sm:px-6">
-        <div className="flex-1 flex justify-between sm:hidden">
-          <button
-            onClick={() => handleChangePage(page - 1)}
-            disabled={page === 0}
-            className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Previous
-          </button>
-          <button
-            onClick={() => handleChangePage(page + 1)}
-            disabled={page >= Math.ceil(rows.length / rowsPerPage) - 1}
-            className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Next
-          </button>
+                          Save
+                        </button>
+                        <button
+                          onClick={handleCancel}
+                          className="bg-gray-500 text-white px-3 py-1 rounded hover:bg-gray-600 transition-colors duration-150"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        onClick={() => handleEdit(item.id)}
+                        className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition-colors duration-150"
+                      >
+                        Edit
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
-        <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-          <div>
-            <p className="text-sm text-gray-700">
-              Showing{" "}
-              <span className="font-medium">{page * rowsPerPage + 1}</span> to{" "}
-              <span className="font-medium">
-                {Math.min((page + 1) * rowsPerPage, rows.length)}
-              </span>{" "}
-              of <span className="font-medium">{rows.length}</span> results
-            </p>
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <div className="flex items-center">
-              <p className="text-sm text-gray-700 mr-2">Rows per page:</p>
+        {/* Pagination */}
+        <div className="flex justify-between items-center p-4 bg-gray-50 sticky bottom-0 border-t border-gray-200">
+          <div className="flex items-center space-x-4">
+            <div>
+              <p className="text-sm text-gray-800">
+                Showing{" "}
+                <span className="font-medium">
+                  {(currentPage - 1) * rowsPerPage + 1}
+                </span>{" "}
+                to{" "}
+                <span className="font-medium">
+                  {Math.min(currentPage * rowsPerPage, data.length)}
+                </span>{" "}
+                of <span className="font-medium">{data.length}</span> results
+              </p>
+            </div>
+            <div className="flex items-center space-x-2">
+              <label htmlFor="rowsPerPage" className="text-sm text-gray-800">
+                Rows per page:
+              </label>
               <select
+                id="rowsPerPage"
                 value={rowsPerPage}
-                onChange={handleChangeRowsPerPage}
-                className="form-select block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                onChange={handleRowsPerPageChange}
+                className="border rounded px-2 py-1 text-sm text-gray-800"
               >
-                {[10, 25, 100].map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
               </select>
             </div>
-
-            <nav
-              className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
-              aria-label="Pagination"
+          </div>
+          <div className="flex space-x-2">
+            <button
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+              className={`px-4 py-2 rounded transition-colors duration-150 ${
+                currentPage === 1
+                  ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                  : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+              }`}
             >
+              Previous
+            </button>
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
               <button
-                onClick={() => handleChangePage(0)}
-                disabled={page === 0}
-                className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                key={page}
+                onClick={() => setCurrentPage(page)}
+                className={`px-4 py-2 rounded transition-colors duration-150 ${
+                  currentPage === page
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                }`}
               >
-                <span className="sr-only">First</span>
-                <FiChevronsLeft className="h-5 w-5" aria-hidden="true" />
+                {page}
               </button>
-              <button
-                onClick={() => handleChangePage(page - 1)}
-                disabled={page === 0}
-                className="relative inline-flex items-center px-2 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <span className="sr-only">Previous</span>
-                <FiChevronLeft className="h-5 w-5" aria-hidden="true" />
-              </button>
-              <button
-                onClick={() => handleChangePage(page + 1)}
-                disabled={page >= totalPages - 1}
-                className="relative inline-flex items-center px-2 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <span className="sr-only">Next</span>
-                <FiChevronRight className="h-5 w-5" aria-hidden="true" />
-              </button>
-              <button
-                onClick={() => handleChangePage(totalPages - 1)}
-                disabled={page >= totalPages - 1}
-                className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <span className="sr-only">Last</span>
-                <FiChevronsRight className="h-5 w-5" aria-hidden="true" />
-              </button>
-            </nav>
+            ))}
+            <button
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+              }
+              disabled={currentPage === totalPages}
+              className={`px-4 py-2 rounded transition-colors duration-150 ${
+                currentPage === totalPages
+                  ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                  : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+              }`}
+            >
+              Next
+            </button>
           </div>
         </div>
       </div>

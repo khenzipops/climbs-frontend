@@ -6,7 +6,7 @@ export default function NavLogin() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-blue-800 rounded shadow-md">
+    <nav className="bg-blue-800  shadow-md">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         {/* Brand */}
         <Link

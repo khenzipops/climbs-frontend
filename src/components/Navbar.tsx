@@ -6,22 +6,20 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-white border-gray-200 dark:bg-blue-600 rounded">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <nav className="bg-white border-gray-200 dark:bg-blue-800 ">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-6">
         {/* Brand */}
-        <Link
+
+        {/* <Link
           href=""
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
-          {/* <img
-            src="/favicon.svg"
-            className="h-6 sm:h-9"
-            alt="Flowbite React Logo"
-          /> */}
-          <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-            Climbs
-          </span>
-        </Link>
+          <img
+            src="/assets/climbs-logo.jpg"
+            className="h-6 sm:h-9 lg:w-"
+            alt="Climbs-logo"
+          />
+        </Link> */}
 
         {/* Mobile menu button */}
         <button
