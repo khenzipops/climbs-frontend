@@ -2,8 +2,8 @@
 import React from "react";
 import Drawer from "@/components/Drawer";
 import NavLogin from "@/components/NavLogin";
-import WeeklyTable from "@/components/WeeklyTable";
-import DatePickerComponent from "@/components/WeeklyCalendar";
+import ItineraryTable from "@/components/ItineraryTable";
+import DatePickerComponent from "@/components/ItineraryCalendar";
 
 export default function Dashboard() {
   return (
@@ -36,7 +36,7 @@ export default function Dashboard() {
           </div>
           {/* Weekly table section */}
           <div className="w-full overflow-x-auto">
-            <WeeklyTable />
+            <ItineraryTable />
           </div>
         </div>
       </div>

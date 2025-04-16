@@ -11,7 +11,7 @@ export default function Dashboard() {
         <div>
           <Drawer />
         </div>
-        <h1>hello world</h1>
+        <h1 className="text-gray-800">hello world</h1>
       </div>
     </div>
   );

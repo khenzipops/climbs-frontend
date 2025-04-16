@@ -1,5 +1,6 @@
 import LoginForm from "@/components/Login";
 import Navbar from "@/components/Navbar";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -30,7 +31,11 @@ export default function Home() {
                 />
               </div>
               <div className="text-2xl font-bold mb-2 text-[#1e0e4b] text-center">
-                Welcome back to <span className="text-[#1c3df5]">CLIMBS</span>
+                Welcome back to{" "}
+                <Link href="/Climbs/Dashboard">
+                  {" "}
+                  <span className="text-[#1c3df5]"> CLIMBS</span>
+                </Link>
               </div>
               <LoginForm />
             </div>

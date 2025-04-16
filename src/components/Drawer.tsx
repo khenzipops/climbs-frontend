@@ -69,19 +69,19 @@ export default function Drawer() {
               <MenuItem
                 icon={<FiHome />}
                 label="Dashboard"
-                href="/"
+                href="/Climbs/Dashboard"
                 isCollapsed={isCollapsed}
               />
               <MenuItem
                 icon={<FiActivity />}
                 label="Weekly Accomplishments"
-                href="/weekly-accomplishments"
+                href="/Climbs/Weekly-Accomplishment"
                 isCollapsed={isCollapsed}
               />
               <MenuItem
                 icon={<FiUserCheck />}
-                label="Itenerary Report"
-                href="/Itenerary-Report"
+                label="Itenerary Reports"
+                href="/Climbs/Itinerary-Reports"
                 isCollapsed={isCollapsed}
               />
               <MenuItem
