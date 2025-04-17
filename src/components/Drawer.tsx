@@ -87,7 +87,7 @@ export default function Drawer() {
               <MenuItem
                 icon={<FiMonitor />}
                 label="Monitoring"
-                href="/Monitoring"
+                href="/Climbs/Monitoring"
                 isCollapsed={isCollapsed}
               />
               <MenuItem
