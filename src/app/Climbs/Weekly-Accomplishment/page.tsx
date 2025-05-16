@@ -43,12 +43,6 @@ export default function Dashboard() {
                 >
                   Print Table
                 </button>
-                <button
-                  // onClick={handlePrint}
-                  className="bg-white text-gray-800 px-2 text-base rounded border border-gray-300 hover:bg-gray-100 transition-colors duration-200"
-                >
-                  Add
-                </button>
               </div>
             </div>
           </div>

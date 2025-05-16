@@ -8,6 +8,7 @@ interface TableData {
   purpose: string;
   product: string;
   remarks: string;
+  assign: string;
 }
 
 export default function CoopTable() {
@@ -25,6 +26,7 @@ export default function CoopTable() {
       purpose: "Loan application",
       product: "Agricultural loan",
       remarks: "Approved",
+      assign: "John Doe",
     },
     {
       id: 2,
@@ -33,6 +35,7 @@ export default function CoopTable() {
       purpose: "Membership",
       product: "Savings account",
       remarks: "Pending",
+      assign: "John Doe",
     },
     {
       id: 3,
@@ -41,6 +44,7 @@ export default function CoopTable() {
       purpose: "Investment",
       product: "Time deposit",
       remarks: "Rejected",
+      assign: "John Doe",
     },
     {
       id: 4,
@@ -49,6 +53,7 @@ export default function CoopTable() {
       purpose: "Consultation",
       product: "Financial advice",
       remarks: "Completed",
+      assign: "John Doe",
     },
     {
       id: 5,
@@ -57,6 +62,7 @@ export default function CoopTable() {
       purpose: "Loan payment",
       product: "Agricultural loan",
       remarks: "On time",
+      assign: "John Doe",
     },
     {
       id: 6,
@@ -65,6 +71,7 @@ export default function CoopTable() {
       purpose: "Loan application",
       product: "Business loan",
       remarks: "Processing",
+      assign: "John Doe",
     },
     {
       id: 7,
@@ -73,6 +80,7 @@ export default function CoopTable() {
       purpose: "Loan inquiry",
       product: "Personal loan",
       remarks: "Inquired",
+      assign: "John Doe",
     },
     {
       id: 8,
@@ -81,6 +89,7 @@ export default function CoopTable() {
       purpose: "Account opening",
       product: "Current account",
       remarks: "Approved",
+      assign: "John Doe",
     },
     {
       id: 9,
@@ -89,6 +98,7 @@ export default function CoopTable() {
       purpose: "Loan renewal",
       product: "Agricultural loan",
       remarks: "Renewed",
+      assign: "John Doe",
     },
     {
       id: 10,
@@ -97,6 +107,7 @@ export default function CoopTable() {
       purpose: "Training",
       product: "Financial literacy",
       remarks: "Completed",
+      assign: "John Doe",
     },
     {
       id: 11,
@@ -105,6 +116,7 @@ export default function CoopTable() {
       purpose: "Consultation",
       product: "Investment advice",
       remarks: "Pending",
+      assign: "John Doe",
     },
     {
       id: 12,
@@ -113,6 +125,7 @@ export default function CoopTable() {
       purpose: "Loan application",
       product: "Housing loan",
       remarks: "Processing",
+      assign: "John Doe",
     },
   ]);
 
@@ -178,6 +191,9 @@ export default function CoopTable() {
                 </th>
                 <th className="py-3 px-4 text-left text-gray-800 font-semibold hover:bg-gray-200 transition-colors duration-150">
                   REMARKS
+                </th>
+                <th className="py-3 px-4 text-left text-gray-800 font-semibold hover:bg-gray-200 transition-colors duration-150">
+                  ASSIGN
                 </th>
                 <th className="py-3 px-4 text-left text-gray-800 font-semibold hover:bg-gray-200 transition-colors duration-150">
                   Action
@@ -253,6 +269,20 @@ export default function CoopTable() {
                       />
                     ) : (
                       item.remarks
+                    )}
+                  </td>
+                  {/* edited */}
+                  <td className="py-3 px-4 hover:bg-gray-100 transition-colors duration-150">
+                    {editId === item.id ? (
+                      <textarea
+                        name="assign"
+                        value={editData.assign || ""}
+                        onChange={handleChange}
+                        className="border rounded px-2 py-1 w-full"
+                        rows={2}
+                      />
+                    ) : (
+                      item.assign
                     )}
                   </td>
                   <td className="py-3 px-4 hover:bg-gray-100 transition-colors duration-150">
