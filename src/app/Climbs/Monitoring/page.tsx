@@ -5,7 +5,6 @@ import { FaEdit } from "react-icons/fa";
 import Navbar from "@/components/Navbar";
 import Drawer from "@/components/Drawer";
 import { getMonitoringTableData } from "@/Services/monitoringData";
-import { Employee } from "@/types/employee";
 import { Monitoring } from "@/types/monitoring";
 
 const MonitoringPage = () => {

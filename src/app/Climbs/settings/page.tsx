@@ -1,14 +1,10 @@
 import Drawer from "@/components/Drawer";
 import Navbar from "@/components/Navbar";
-export default function SettingsPage() {
-  const userInfo = {
-    firstName: "ADMIN",
-    lastName: "ADMIN",
-    username: "ADMIN123",
-    email: "ADMIN123@example.com",
-    phone: "123-456-7890",
-    address: "Cagayan de Oro City",
-  };
+import { getUserInfoData } from "@/Services/userinfoData";
+import { UserInfo } from "@/types/userinfo";
+
+const SettingsPage = () => {
+  const Tabledata = getUserInfoData();
 
   return (
     <div>
@@ -82,39 +78,69 @@ export default function SettingsPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-800">
               <div>
                 <label className="font-medium">First Name</label>
-                <p className="mt-1 p-2 border rounded bg-white">
-                  {userInfo.firstName}
-                </p>
+                {Tabledata.map((user: UserInfo) => (
+                  <p
+                    className="mt-1 p-2 border rounded bg-white"
+                    key={user.employeeID}
+                  >
+                    {user.firstName}
+                  </p>
+                ))}
               </div>
               <div>
                 <label className="font-medium">Last Name</label>
-                <p className="mt-1 p-2 border rounded bg-white">
-                  {userInfo.lastName}
-                </p>
+                {Tabledata.map((user: UserInfo) => (
+                  <p
+                    className="mt-1 p-2 border rounded bg-white"
+                    key={user.employeeID + "-last"}
+                  >
+                    {user.lastName}
+                  </p>
+                ))}
               </div>
               <div>
                 <label className="font-medium">Username</label>
-                <p className="mt-1 p-2 border rounded bg-white">
-                  {userInfo.username}
-                </p>
+                {Tabledata.map((user: UserInfo) => (
+                  <p
+                    className="mt-1 p-2 border rounded bg-white"
+                    key={user.employeeID + "-username"}
+                  >
+                    {user.username}
+                  </p>
+                ))}
               </div>
               <div>
                 <label className="font-medium">Email</label>
-                <p className="mt-1 p-2 border rounded bg-white">
-                  {userInfo.email}
-                </p>
+                {Tabledata.map((user: UserInfo) => (
+                  <p
+                    className="mt-1 p-2 border rounded bg-white"
+                    key={user.employeeID + "-email"}
+                  >
+                    {user.email}
+                  </p>
+                ))}
               </div>
               <div>
                 <label className="font-medium">Phone</label>
-                <p className="mt-1 p-2 border rounded bg-white">
-                  {userInfo.phone}
-                </p>
+                {Tabledata.map((user: UserInfo) => (
+                  <p
+                    className="mt-1 p-2 border rounded bg-white"
+                    key={user.employeeID + "-phone"}
+                  >
+                    {user.phone}
+                  </p>
+                ))}
               </div>
               <div className="sm:col-span-2">
                 <label className="font-medium">Location</label>
-                <p className="mt-1 p-2 border rounded bg-white">
-                  {userInfo.address}
-                </p>
+                {Tabledata.map((user: UserInfo) => (
+                  <p
+                    className="mt-1 p-2 border rounded bg-white"
+                    key={user.employeeID + "-address"}
+                  >
+                    {user.address}
+                  </p>
+                ))}
               </div>
             </div>
           </div>
@@ -126,4 +152,5 @@ export default function SettingsPage() {
       </div>
     </div>
   );
-}
+};
+export default SettingsPage;
