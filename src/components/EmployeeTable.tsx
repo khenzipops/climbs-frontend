@@ -7,10 +7,12 @@ interface MonitoringTableProps {
     no: number;
     employeeId: string;
     name: string;
-    week1: string;
-    week2: string;
-    week3: string;
-    week4: number;
+    position: string;
+    location: string;
+    status: string;
+    number: number;
+    birthday: string;
+    email: string;
   }>;
 }
 const MonitoringTable: React.FC<MonitoringTableProps> = ({ data }) => {
@@ -99,47 +101,68 @@ const MonitoringTable: React.FC<MonitoringTableProps> = ({ data }) => {
                 {editRowId === row.id ? (
                   <input
                     type="text"
-                    value={row.week1}
+                    value={row.position}
                     onChange={(e) => handleChange(e, row.id, "position")}
                   />
                 ) : (
-                  row.week1
+                  row.position
                 )}
               </td>
               <td className="py-2 px-4 border-b border-gray-300 text-gray-800">
                 {editRowId === row.id ? (
                   <input
                     type="text"
-                    value={row.week2}
+                    value={row.location}
                     onChange={(e) => handleChange(e, row.id, "location")}
                   />
                 ) : (
-                  row.week2
+                  row.location
                 )}
               </td>
               <td className="py-2 px-4 border-b border-gray-300 text-gray-800">
                 {editRowId === row.id ? (
                   <input
                     type="text"
-                    value={row.week3}
+                    value={row.status}
                     onChange={(e) => handleChange(e, row.id, "status")}
                   />
                 ) : (
-                  row.week3
+                  row.status
                 )}
               </td>
               <td className="py-2 px-4 border-b border-gray-300 text-gray-800">
                 {editRowId === row.id ? (
                   <input
                     type="text"
-                    value={row.week4}
+                    value={row.number}
                     onChange={(e) => handleChange(e, row.id, "number")}
                   />
                 ) : (
-                  row.week4
+                  row.number
                 )}
               </td>
-
+              <td className="py-2 px-4 border-b border-gray-300 text-gray-800">
+                {editRowId === row.id ? (
+                  <input
+                    type="text"
+                    value={row.birthday}
+                    onChange={(e) => handleChange(e, row.id, "birthday")}
+                  />
+                ) : (
+                  row.birthday
+                )}
+              </td>
+              <td className="py-2 px-4 border-b border-gray-300 text-gray-800">
+                {editRowId === row.id ? (
+                  <input
+                    type="text"
+                    value={row.email}
+                    onChange={(e) => handleChange(e, row.id, "email")}
+                  />
+                ) : (
+                  row.email
+                )}
+              </td>
               <td className="py-2 px-4 border-b border-gray-300 text-gray-800">
                 {editRowId === row.id ? (
                   <>

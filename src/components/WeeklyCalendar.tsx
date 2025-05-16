@@ -56,9 +56,7 @@ export default function CompactDatePickerRow() {
                         onClick={decreaseMonth}
                         disabled={prevMonthButtonDisabled}
                         className="p-1 rounded hover:bg-gray-100 disabled:opacity-50"
-                      >
-                        {"<"}
-                      </button>
+                      ></button>
                       <button
                         onClick={() => setShowMonthPicker(true)}
                         className="text-sm font-medium text-gray-700 hover:text-gray-900"
@@ -69,9 +67,7 @@ export default function CompactDatePickerRow() {
                         onClick={increaseMonth}
                         disabled={nextMonthButtonDisabled}
                         className="p-1 rounded hover:bg-gray-100 disabled:opacity-50"
-                      >
-                        {">"}
-                      </button>
+                      ></button>
                     </div>
                   )}
                 </div>
@@ -135,10 +131,8 @@ export default function CompactDatePickerRow() {
                       <button
                         onClick={decreaseMonth}
                         disabled={prevMonthButtonDisabled}
-                        className="p-1 rounded hover:bg-gray-100 disabled:opacity-50"
-                      >
-                        {"<"}
-                      </button>
+                        className="p-1 rounded hover:bg-gray-200 disabled:opacity-50 "
+                      ></button>
                       <button
                         onClick={() => setShowMonthPicker(true)}
                         className="text-sm font-medium text-gray-700 hover:text-gray-900"
@@ -149,9 +143,7 @@ export default function CompactDatePickerRow() {
                         onClick={increaseMonth}
                         disabled={nextMonthButtonDisabled}
                         className="p-1 rounded hover:bg-gray-100 disabled:opacity-50"
-                      >
-                        {">"}
-                      </button>
+                      ></button>
                     </div>
                   )}
                 </div>

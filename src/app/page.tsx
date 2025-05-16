@@ -32,7 +32,7 @@ export default function Home() {
               </div>
               <div className="text-2xl font-bold mb-2 text-[#1e0e4b] text-center">
                 Welcome back to{" "}
-                <Link href="/Climbs/Dashboard">
+                <Link href="/climbs/dashboard">
                   {" "}
                   <span className="text-[#1c3df5]"> CLIMBS</span>
                 </Link>
