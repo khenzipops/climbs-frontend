@@ -48,6 +48,9 @@ const Employees = () => {
                 Status
               </th>
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                ROLE
+              </th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Action
               </th>
             </tr>
@@ -66,6 +69,7 @@ const Employees = () => {
                 <td className="px-4 py-3 text-gray-700">{employee.position}</td>
                 <td className="px-4 py-3 text-gray-700">{employee.location}</td>
                 <td className="px-4 py-3 text-gray-700">{employee.status}</td>
+                <td className="px-4 py-3 text-gray-700">{employee.role}</td>
                 <td className="px-4 py-3">
                   <button
                     onClick={() => handleEdit(employee.employeeId)}

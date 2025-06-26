@@ -9,6 +9,7 @@ export const getEmployeeTableData = (): ItineraryData[] => {
       purpose: "Loan application",
       product: "Agricultural loan",
       remarks: "Approved",
+      assign: "John Doe",
     },
     {
       id: 2,
@@ -17,6 +18,7 @@ export const getEmployeeTableData = (): ItineraryData[] => {
       purpose: "Membership",
       product: "Savings account",
       remarks: "Pending",
+      assign: "John Doe",
     },
     {
       id: 3,
@@ -25,6 +27,7 @@ export const getEmployeeTableData = (): ItineraryData[] => {
       purpose: "Investment",
       product: "Time deposit",
       remarks: "Rejected",
+      assign: "John Doe",
     },
     {
       id: 4,
@@ -33,6 +36,7 @@ export const getEmployeeTableData = (): ItineraryData[] => {
       purpose: "Consultation",
       product: "Financial advice",
       remarks: "Completed",
+      assign: "John Doe",
     },
     {
       id: 5,
@@ -41,6 +45,7 @@ export const getEmployeeTableData = (): ItineraryData[] => {
       purpose: "Loan payment",
       product: "Agricultural loan",
       remarks: "On time",
+      assign: "John Doe",
     },
     {
       id: 6,
@@ -49,6 +54,7 @@ export const getEmployeeTableData = (): ItineraryData[] => {
       purpose: "Loan application",
       product: "Business loan",
       remarks: "Processing",
+      assign: "John Doe",
     },
     {
       id: 7,
@@ -57,6 +63,7 @@ export const getEmployeeTableData = (): ItineraryData[] => {
       purpose: "Loan inquiry",
       product: "Personal loan",
       remarks: "Inquired",
+      assign: "John Doe",
     },
     {
       id: 8,
@@ -65,6 +72,7 @@ export const getEmployeeTableData = (): ItineraryData[] => {
       purpose: "Account opening",
       product: "Current account",
       remarks: "Approved",
+      assign: "John Doe",
     },
     {
       id: 9,
@@ -73,6 +81,7 @@ export const getEmployeeTableData = (): ItineraryData[] => {
       purpose: "Loan renewal",
       product: "Agricultural loan",
       remarks: "Renewed",
+      assign: "John Doe",
     },
     {
       id: 10,
@@ -81,6 +90,7 @@ export const getEmployeeTableData = (): ItineraryData[] => {
       purpose: "Training",
       product: "Financial literacy",
       remarks: "Completed",
+      assign: "John Doe",
     },
     {
       id: 11,
@@ -89,6 +99,7 @@ export const getEmployeeTableData = (): ItineraryData[] => {
       purpose: "Consultation",
       product: "Investment advice",
       remarks: "Pending",
+      assign: "John Doe",
     },
     {
       id: 12,
@@ -97,6 +108,7 @@ export const getEmployeeTableData = (): ItineraryData[] => {
       purpose: "Loan application",
       product: "Housing loan",
       remarks: "Processing",
+      assign: "John Doe",
     },
   ];
 };

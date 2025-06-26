@@ -32,9 +32,7 @@ const MonitoringPage = () => {
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 No
               </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Employee ID
-              </th>
+
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Name
               </th>
@@ -50,6 +48,9 @@ const MonitoringPage = () => {
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Week 4
               </th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                ACTION
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -59,9 +60,7 @@ const MonitoringPage = () => {
                 className="hover:bg-gray-100 transition-colors duration-200 border-b border-gray-200"
               >
                 <td className="px-4 py-3 text-gray-700">{monitoring.no}</td>
-                <td className="px-4 py-3 text-gray-700">
-                  {monitoring.employeeId}
-                </td>
+
                 <td className="px-4 py-3 text-gray-700">{monitoring.name}</td>
                 <td className="px-4 py-3 text-gray-700">{monitoring.week1}</td>
                 <td className="px-4 py-3 text-gray-700">{monitoring.week2}</td>

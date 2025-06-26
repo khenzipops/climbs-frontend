@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
 
-interface TableData {
+
+interface ItineraryData {
   id: number;
   date: string;
   name: string;
@@ -13,123 +14,16 @@ interface TableData {
 
 export default function CoopTable() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [editId, setEditId] = useState<number | null>(null);
-  const [editData, setEditData] = useState<Partial<TableData>>({});
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+  const [editId, setEditId] = useState<number | null>(null);
+  const [editData, setEditData] = useState<Partial<ItineraryData>>({});
+  const [showModal, setShowModal] = useState(false);
 
-  // Sample data
-  const [data, setData] = useState<TableData[]>([
-    {
-      id: 1,
-      date: "2023-10-15",
-      name: "ABC Cooperative",
-      purpose: "Loan application",
-      product: "Agricultural loan",
-      remarks: "Approved",
-      assign: "John Doe",
-    },
-    {
-      id: 2,
-      date: "2023-10-16",
-      name: "XYZ Non-Cooperative",
-      purpose: "Membership",
-      product: "Savings account",
-      remarks: "Pending",
-      assign: "John Doe",
-    },
-    {
-      id: 3,
-      date: "2023-10-17",
-      name: "DEF Cooperative",
-      purpose: "Investment",
-      product: "Time deposit",
-      remarks: "Rejected",
-      assign: "John Doe",
-    },
-    {
-      id: 4,
-      date: "2023-10-18",
-      name: "GHI Non-Cooperative",
-      purpose: "Consultation",
-      product: "Financial advice",
-      remarks: "Completed",
-      assign: "John Doe",
-    },
-    {
-      id: 5,
-      date: "2023-10-19",
-      name: "JKL Cooperative",
-      purpose: "Loan payment",
-      product: "Agricultural loan",
-      remarks: "On time",
-      assign: "John Doe",
-    },
-    {
-      id: 6,
-      date: "2023-10-20",
-      name: "MNO Cooperative",
-      purpose: "Loan application",
-      product: "Business loan",
-      remarks: "Processing",
-      assign: "John Doe",
-    },
-    {
-      id: 7,
-      date: "2023-10-21",
-      name: "PQR Cooperative",
-      purpose: "Loan inquiry",
-      product: "Personal loan",
-      remarks: "Inquired",
-      assign: "John Doe",
-    },
-    {
-      id: 8,
-      date: "2023-10-22",
-      name: "STU Non-Cooperative",
-      purpose: "Account opening",
-      product: "Current account",
-      remarks: "Approved",
-      assign: "John Doe",
-    },
-    {
-      id: 9,
-      date: "2023-10-23",
-      name: "VWX Cooperative",
-      purpose: "Loan renewal",
-      product: "Agricultural loan",
-      remarks: "Renewed",
-      assign: "John Doe",
-    },
-    {
-      id: 10,
-      date: "2023-10-24",
-      name: "YZA Cooperative",
-      purpose: "Training",
-      product: "Financial literacy",
-      remarks: "Completed",
-      assign: "John Doe",
-    },
-    {
-      id: 11,
-      date: "2023-10-25",
-      name: "BCD Non-Cooperative",
-      purpose: "Consultation",
-      product: "Investment advice",
-      remarks: "Pending",
-      assign: "John Doe",
-    },
-    {
-      id: 12,
-      date: "2023-10-26",
-      name: "EFG Cooperative",
-      purpose: "Loan application",
-      product: "Housing loan",
-      remarks: "Processing",
-      assign: "John Doe",
-    },
+  const [data, setData] = useState<ItineraryData[]>([
+    
+
   ]);
 
-  // Calculate pagination
   const totalPages = Math.ceil(data.length / rowsPerPage);
   const currentData = data.slice(
     (currentPage - 1) * rowsPerPage,
@@ -141,17 +35,24 @@ export default function CoopTable() {
     const itemToEdit = data.find((item) => item.id === id);
     if (itemToEdit) {
       setEditData({ ...itemToEdit });
+      setShowModal(true);
     }
   };
 
-  const handleSave = (id: number) => {
-    setData(
-      data.map((item) => (item.id === id ? { ...item, ...editData } : item))
-    );
+  const handleSave = () => {
+    if (editId !== null) {
+      setData((prevData) =>
+        prevData.map((item) =>
+          item.id === editId ? { ...item, ...editData } : item
+        )
+      );
+    }
+    setShowModal(false);
     setEditId(null);
   };
 
   const handleCancel = () => {
+    setShowModal(false);
     setEditId(null);
   };
 
@@ -164,151 +65,54 @@ export default function CoopTable() {
 
   const handleRowsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setRowsPerPage(Number(e.target.value));
-    setCurrentPage(1); // Reset to first page when changing rows per page
+    setCurrentPage(1);
   };
 
   return (
-    <div className="container mx-auto  py-8">
+    <div className="container mx-auto py-8">
       <div className="overflow-x-auto border border-gray-200 rounded-lg">
         <div className="overflow-auto max-h-[500px]">
           <table className="min-w-full bg-white divide-y divide-gray-200">
             <thead className="bg-gray-100 sticky top-0">
               <tr>
-                <th className="py-3 px-4 text-left text-gray-800 font-semibold hover:bg-gray-200 transition-colors duration-150">
-                  No.
-                </th>
-                <th className="py-3 px-4 text-left text-gray-800 font-semibold hover:bg-gray-200 transition-colors duration-150">
-                  Date
-                </th>
-                <th className="py-3 px-4 text-left text-gray-800 font-semibold hover:bg-gray-200 transition-colors duration-150">
-                  Name of COOP/NON COOPS
-                </th>
-                <th className="py-3 px-4 text-left text-gray-800 font-semibold hover:bg-gray-200 transition-colors duration-150">
-                  PURPOSE
-                </th>
-                <th className="py-3 px-4 text-left text-gray-800 font-semibold hover:bg-gray-200 transition-colors duration-150">
-                  PRODUCT
-                </th>
-                <th className="py-3 px-4 text-left text-gray-800 font-semibold hover:bg-gray-200 transition-colors duration-150">
-                  REMARKS
-                </th>
-                <th className="py-3 px-4 text-left text-gray-800 font-semibold hover:bg-gray-200 transition-colors duration-150">
-                  ASSIGN
-                </th>
-                <th className="py-3 px-4 text-left text-gray-800 font-semibold hover:bg-gray-200 transition-colors duration-150">
-                  Action
-                </th>
+                {[
+                  "No.",
+                  "Date",
+                  "Name of COOP/NON COOPS",
+                  "PURPOSE",
+                  "PRODUCT",
+                  "REMARKS",
+                  "ASSIGN",
+                  "ACTION",
+                ].map((heading, index) => (
+                  <th
+                    key={index}
+                    className="py-3 px-4 text-left text-gray-800 font-semibold hover:bg-gray-200 transition-colors duration-150"
+                  >
+                    {heading}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody className="text-gray-800 divide-y divide-gray-200">
               {currentData.map((item, index) => (
                 <tr key={item.id} className="hover:bg-gray-50">
-                  <td className="py-3 px-4 hover:bg-gray-100 transition-colors duration-150">
+                  <td className="py-3 px-4">
                     {(currentPage - 1) * rowsPerPage + index + 1}
                   </td>
-                  <td className="py-3 px-4 hover:bg-gray-100 transition-colors duration-150">
-                    {editId === item.id ? (
-                      <input
-                        type="date"
-                        name="date"
-                        value={editData.date || ""}
-                        onChange={handleChange}
-                        className="border rounded px-2 py-1 w-full"
-                      />
-                    ) : (
-                      item.date
-                    )}
-                  </td>
-                  <td className="py-3 px-4 hover:bg-gray-100 transition-colors duration-150">
-                    {editId === item.id ? (
-                      <input
-                        type="text"
-                        name="name"
-                        value={editData.name || ""}
-                        onChange={handleChange}
-                        className="border rounded px-2 py-1 w-full"
-                      />
-                    ) : (
-                      item.name
-                    )}
-                  </td>
-                  <td className="py-3 px-4 hover:bg-gray-100 transition-colors duration-150">
-                    {editId === item.id ? (
-                      <input
-                        type="text"
-                        name="purpose"
-                        value={editData.purpose || ""}
-                        onChange={handleChange}
-                        className="border rounded px-2 py-1 w-full"
-                      />
-                    ) : (
-                      item.purpose
-                    )}
-                  </td>
-                  <td className="py-3 px-4 hover:bg-gray-100 transition-colors duration-150">
-                    {editId === item.id ? (
-                      <input
-                        type="text"
-                        name="product"
-                        value={editData.product || ""}
-                        onChange={handleChange}
-                        className="border rounded px-2 py-1 w-full"
-                      />
-                    ) : (
-                      item.product
-                    )}
-                  </td>
-                  <td className="py-3 px-4 hover:bg-gray-100 transition-colors duration-150">
-                    {editId === item.id ? (
-                      <textarea
-                        name="remarks"
-                        value={editData.remarks || ""}
-                        onChange={handleChange}
-                        className="border rounded px-2 py-1 w-full"
-                        rows={2}
-                      />
-                    ) : (
-                      item.remarks
-                    )}
-                  </td>
-                  {/* edited */}
-                  <td className="py-3 px-4 hover:bg-gray-100 transition-colors duration-150">
-                    {editId === item.id ? (
-                      <textarea
-                        name="assign"
-                        value={editData.assign || ""}
-                        onChange={handleChange}
-                        className="border rounded px-2 py-1 w-full"
-                        rows={2}
-                      />
-                    ) : (
-                      item.assign
-                    )}
-                  </td>
-                  <td className="py-3 px-4 hover:bg-gray-100 transition-colors duration-150">
-                    {editId === item.id ? (
-                      <div className="flex space-x-2">
-                        <button
-                          onClick={() => handleSave(item.id)}
-                          className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition-colors duration-150"
-                        >
-                          Save
-                        </button>
-                        <button
-                          onClick={handleCancel}
-                          className="bg-gray-500 text-white px-3 py-1 rounded hover:bg-gray-600 transition-colors duration-150"
-                        >
-                          Cancel
-                        </button>
-                      </div>
-                    ) : (
-                      <button
-                        onClick={() => handleEdit(item.id)}
-                        className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition-colors duration-150"
-                      >
-                        Edit
-                      </button>
-                    )}
+                  <td className="py-3 px-4">{item.date}</td>
+                  <td className="py-3 px-4">{item.name}</td>
+                  <td className="py-3 px-4">{item.purpose}</td>
+                  <td className="py-3 px-4">{item.product}</td>
+                  <td className="py-3 px-4">{item.remarks}</td>
+                  <td className="py-3 px-4">{item.assign}</td>
+                  <td className="py-3 px-4">
+                    <button
+                      onClick={() => handleEdit(item.id)}
+                      className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition-colors duration-150"
+                    >
+                      Edit
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -319,19 +123,17 @@ export default function CoopTable() {
         {/* Pagination */}
         <div className="flex justify-between items-center p-4 bg-gray-50 sticky bottom-0 border-t border-gray-200">
           <div className="flex items-center space-x-4">
-            <div>
-              <p className="text-sm text-gray-800">
-                Showing{" "}
-                <span className="font-medium">
-                  {(currentPage - 1) * rowsPerPage + 1}
-                </span>{" "}
-                to{" "}
-                <span className="font-medium">
-                  {Math.min(currentPage * rowsPerPage, data.length)}
-                </span>{" "}
-                of <span className="font-medium">{data.length}</span> results
-              </p>
-            </div>
+            <p className="text-sm text-gray-800">
+              Showing{" "}
+              <span className="font-medium">
+                {(currentPage - 1) * rowsPerPage + 1}
+              </span>{" "}
+              to{" "}
+              <span className="font-medium">
+                {Math.min(currentPage * rowsPerPage, data.length)}
+              </span>{" "}
+              of <span className="font-medium">{data.length}</span> results
+            </p>
             <div className="flex items-center space-x-2">
               <label htmlFor="rowsPerPage" className="text-sm text-gray-800">
                 Rows per page:
@@ -342,11 +144,11 @@ export default function CoopTable() {
                 onChange={handleRowsPerPageChange}
                 className="border rounded px-2 py-1 text-sm text-gray-800"
               >
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
-                <option value="30">30</option>
-                <option value="40">40</option>
+                {[5, 10, 20, 30, 40].map((num) => (
+                  <option key={num} value={num}>
+                    {num}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
@@ -354,7 +156,7 @@ export default function CoopTable() {
             <button
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
-              className={`px-4 py-2 rounded transition-colors duration-150 ${
+              className={`px-4 py-2 rounded ${
                 currentPage === 1
                   ? "bg-gray-200 text-gray-500 cursor-not-allowed"
                   : "bg-gray-200 text-gray-800 hover:bg-gray-300"
@@ -366,7 +168,7 @@ export default function CoopTable() {
               <button
                 key={page}
                 onClick={() => setCurrentPage(page)}
-                className={`px-4 py-2 rounded transition-colors duration-150 ${
+                className={`px-4 py-2 rounded ${
                   currentPage === page
                     ? "bg-blue-500 text-white"
                     : "bg-gray-200 text-gray-800 hover:bg-gray-300"
@@ -380,7 +182,7 @@ export default function CoopTable() {
                 setCurrentPage((prev) => Math.min(prev + 1, totalPages))
               }
               disabled={currentPage === totalPages}
-              className={`px-4 py-2 rounded transition-colors duration-150 ${
+              className={`px-4 py-2 rounded ${
                 currentPage === totalPages
                   ? "bg-gray-200 text-gray-500 cursor-not-allowed"
                   : "bg-gray-200 text-gray-800 hover:bg-gray-300"
@@ -391,6 +193,57 @@ export default function CoopTable() {
           </div>
         </div>
       </div>
+
+      {/* Modal for Editing */}
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+            <h2 className="text-lg font-semibold mb-4">Edit Record</h2>
+            <div className="space-y-3">
+              {["date", "name", "purpose", "product", "remarks", "assign"].map(
+                (field) => (
+                  <div key={field}>
+                    <label className="block text-sm font-medium capitalize">
+                      {field}
+                    </label>
+                    {field === "remarks" || field === "assign" ? (
+                      <textarea
+                        name={field}
+                        value={(editData as any)[field] || ""}
+                        onChange={handleChange}
+                        className="border w-full rounded px-3 py-2"
+                        rows={2}
+                      />
+                    ) : (
+                      <input
+                        type={field === "date" ? "date" : "text"}
+                        name={field}
+                        value={(editData as any)[field] || ""}
+                        onChange={handleChange}
+                        className="border w-full rounded px-3 py-2"
+                      />
+                    )}
+                  </div>
+                )
+              )}
+            </div>
+            <div className="mt-4 flex justify-end space-x-2">
+              <button
+                onClick={handleCancel}
+                className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSave}
+                className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
