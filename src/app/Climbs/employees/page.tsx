@@ -3,7 +3,6 @@
 import React from "react";
 import { FaEdit } from "react-icons/fa";
 import Navbar from "@/components/Navbar";
-import Drawer from "@/components/Drawer";
 import { getEmployeeTableData } from "@/Services/employeeData";
 import { Employee } from "@/types/employee";
 
@@ -19,9 +18,7 @@ const Employees = () => {
       <div>
         <Navbar />
       </div>
-      <div>
-        <Drawer />
-      </div>
+      <div></div>
       <div className="p-4">
         <h1 className="text-2xl font-bold mb-4 text-gray-800">Employee</h1>
       </div>

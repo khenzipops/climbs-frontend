@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Drawer from "@/components/Drawer";
+import Drawer from "@/components/drawer";
 import NavLogin from "@/components/NavLogin";
 import ItineraryTable from "@/components/ItineraryTable";
 import DatePickerComponent from "@/components/ItineraryCalendar";

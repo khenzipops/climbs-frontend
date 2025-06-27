@@ -3,7 +3,7 @@ import { Employee } from "@/types/employee";
 export const getEmployeeTableData = (): Employee[] => {
   return [
     {
-      id: "1",
+      id: 1,
       no: 1,
       employeeId: "E001",
       name: "John Doe",
@@ -16,7 +16,7 @@ export const getEmployeeTableData = (): Employee[] => {
       email: "john.doe@example.com",
     },
     {
-      id: "2",
+      id: 2,
       no: 2,
       employeeId: "E002",
       name: "Jane Smith",
@@ -30,7 +30,7 @@ export const getEmployeeTableData = (): Employee[] => {
     },
 
     {
-      id: "3",
+      id: 3,
       no: 3,
       employeeId: "E003",
       name: "Alice Johnson",
@@ -43,7 +43,7 @@ export const getEmployeeTableData = (): Employee[] => {
       email: "alice.johnson@example.com",
     },
     {
-      id: "4",
+      id: 4,
       no: 4,
       employeeId: "E004",
       name: "Bob Brown",
@@ -56,7 +56,7 @@ export const getEmployeeTableData = (): Employee[] => {
       email: "bob.brown@example.com",
     },
     {
-      id: "5",
+      id: 5,
       no: 5,
       employeeId: "E005",
       name: "Charlie Davis",
@@ -69,7 +69,7 @@ export const getEmployeeTableData = (): Employee[] => {
       email: "charlie.davis@example.com",
     },
     {
-      id: "6",
+      id: 6,
       no: 6,
       employeeId: "E006",
       name: "Diana Evans",
@@ -82,7 +82,7 @@ export const getEmployeeTableData = (): Employee[] => {
       email: "diana.evans@example.com",
     },
     {
-      id: "7",
+      id: 7,
       no: 7,
       employeeId: "E007",
       name: "Ethan Foster",

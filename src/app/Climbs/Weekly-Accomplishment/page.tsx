@@ -1,6 +1,5 @@
 "use client";
 import React, { useRef } from "react";
-import Drawer from "@/components/Drawer";
 import NavLogin from "@/components/NavLogin";
 import WeeklyTable from "@/components/WeeklyTable";
 import DatePickerComponent from "@/components/WeeklyCalendar";
@@ -23,9 +22,7 @@ export default function Dashboard() {
   return (
     <div className="">
       <NavLogin />
-      <div className="">
-        <Drawer />
-      </div>
+      <div className=""></div>
       <div className="flex flex-col bg-white">
         <div className="p-2 m-10 border-2">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center">

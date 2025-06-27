@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 
-const PrintableComponent = () => {
+const PrintableComponent: React.FC = () => {
   const componentRef = useRef<HTMLDivElement | null>(null);
 
   const handlePrint = useReactToPrint({

@@ -11,8 +11,6 @@ import {
   X,
 } from "lucide-react";
 import { useState } from "react";
-
-import Drawer from "@/components/Drawer";
 import NavLogin from "@/components/NavLogin";
 
 // Updated sidebar items
@@ -55,7 +53,6 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-tr from-slate-100 to-white text-neutral-800 font-sans">
       <NavLogin />
-      <Drawer />
 
       {/* Toggle Button for Mobile */}
       <div className="md:hidden flex justify-end px-6 pt-4">
