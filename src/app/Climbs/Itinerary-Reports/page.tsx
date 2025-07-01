@@ -1,13 +1,11 @@
 "use client";
 import React from "react";
-import NavLogin from "@/components/NavLogin";
 import ItineraryTable from "@/components/ItineraryTable";
 import DatePickerComponent from "@/components/ItineraryCalendar";
 
 export default function Dashboard() {
   return (
     <div className="">
-      <NavLogin />
       <div className="flex flex-col  bg-white">
         <div className="p-2 m-10 border-2">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center">

@@ -1,6 +1,5 @@
 "use client";
 import React, { useRef } from "react";
-import NavLogin from "@/components/NavLogin";
 import WeeklyTable from "@/components/WeeklyTable";
 import DatePickerComponent from "@/components/WeeklyCalendar";
 
@@ -21,7 +20,6 @@ export default function Dashboard() {
 
   return (
     <div className="">
-      <NavLogin />
       <div className=""></div>
       <div className="flex flex-col bg-white">
         <div className="p-2 m-10 border-2">
