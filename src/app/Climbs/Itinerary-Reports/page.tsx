@@ -5,33 +5,41 @@ import DatePickerComponent from "@/components/ItineraryCalendar";
 
 export default function Dashboard() {
   return (
-    <div className="">
-      <div className="flex flex-col  bg-white">
-        <div className="p-2 m-10 border-2">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
-            <h1 className="text-gray-600 text-md ml-4">Date of Submission: </h1>
+    <div className="bg-white p-10">
+      <div className="border-2 p-2 rounded-lg">
+        {/* Header Section */}
+        <div className="flex flex-col md:flex-row justify-between gap-4 mb-6">
+          <h1 className="text-gray-600 text-md font-medium">
+            Date of Submission:
+          </h1>
 
-            <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-              <div className="order-2 sm:order-1">
-                <DatePickerComponent />
-              </div>
+          {/* Actions Group */}
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+            <div className="sm:order-1">
+              <DatePickerComponent />
+            </div>
 
-              <div className="flex gap-2 order-1 sm:order-2 ml-auto sm:ml-0">
-                <button className="bg-white text-gray-800 px-2 text-base  rounded border border-gray-300 hover:bg-gray-100 transition-colors duration-200">
-                  Print
-                </button>
-                <button className="bg-white text-gray-800 px-2 text-base rounded border border-gray-300 hover:bg-gray-100 transition-colors duration-200">
-                  Add
-                </button>
-              </div>
+            <div className="flex gap-2 sm:ml-auto">
+              <ActionButton label="Print" />
+              <ActionButton label="Add" />
             </div>
           </div>
-          {/* Weekly table section */}
-          <div className="w-full overflow-x-auto">
-            <ItineraryTable />
-          </div>
+        </div>
+
+        {/* Table Section */}
+        <div className="overflow-x-auto">
+          <ItineraryTable />
         </div>
       </div>
     </div>
+  );
+}
+
+// Extracted button component for reusability
+function ActionButton({ label }: { label: string }) {
+  return (
+    <button className="bg-white text-gray-800 px-4 py-1.5 text-sm rounded border border-gray-300 hover:bg-gray-100 transition-colors duration-200">
+      {label}
+    </button>
   );
 }

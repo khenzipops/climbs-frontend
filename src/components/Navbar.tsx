@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import { User, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,28 +10,76 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { cn } from "@/lib/utils"; // Make sure you have this utility
+import { cn } from "@/lib/utils";
+import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 
-interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {
-  // You can add any additional props here if needed
-}
+// Import your custom sidebar components
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarGroup,
+  SidebarGroupLabel,
+} from "@/components/ui/sidebar"; // adjust the path as needed
+
+interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function Navbar({ className, ...props }: NavbarProps) {
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 w-full border-b bg-background",
-        className
-      )}
-      {...props}
-    >
+    <header className="border-b bg-white z-30">
       <div className="container flex h-16 items-center justify-between px-4">
-        {/* Left side - Logo */}
-        <Link href="/" className="flex items-center gap-2 font-bold">
-          <span>CLIMBS</span>
-        </Link>
+        {/* Left side - Sidebar toggle & logo */}
+        <div className="flex items-center gap-2">
+          {/* 👇 Mobile Sidebar Toggle */}
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="md:hidden">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="p-0 w-64">
+              {/* ✅ Mobile Sidebar Content */}
+              <Sidebar>
+                <SidebarContent>
+                  <SidebarGroup>
+                    <SidebarGroupLabel>Menu</SidebarGroupLabel>
+                    <SidebarMenu>
+                      <SidebarMenuItem>
+                        <SidebarMenuButton>Dashboard</SidebarMenuButton>
+                      </SidebarMenuItem>
+                      <SidebarMenuItem>
+                        <SidebarMenuButton>Itinerary Reports</SidebarMenuButton>
+                      </SidebarMenuItem>
+                      <SidebarMenuItem>
+                        <SidebarMenuButton>
+                          Weekly Accomplishment
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                      <SidebarMenuItem>
+                        <SidebarMenuButton>Monitoring</SidebarMenuButton>
+                      </SidebarMenuItem>
+                      <SidebarMenuItem>
+                        <SidebarMenuButton>Employees</SidebarMenuButton>
+                      </SidebarMenuItem>
+                      <SidebarMenuItem>
+                        <SidebarMenuButton>Settings</SidebarMenuButton>
+                      </SidebarMenuItem>
+                    </SidebarMenu>
+                  </SidebarGroup>
+                </SidebarContent>
+              </Sidebar>
+            </SheetContent>
+          </Sheet>
 
-        {/* Right side - User menu */}
+          {/* Logo */}
+          <Link href="/" className="font-bold">
+            <span>CLIMBS</span>
+          </Link>
+        </div>
+
+        {/* Right side - User dropdown */}
         <div className="flex">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
