@@ -15,32 +15,32 @@ import {
 const items = [
   {
     title: "Dashboard",
-    url: "#",
+    url: "/climbs/dashboard",
     icon: Home,
   },
   {
     title: "Itinerary Reports",
-    url: "#",
+    url: "/climbs/itinerary-reports",
     icon: Inbox,
   },
   {
     title: "Weekly Accomplishment",
-    url: "#",
+    url: "/climbs/weekly-accomplishment",
     icon: Calendar,
   },
   {
     title: "Monitoring",
-    url: "#",
+    url: "/climbs/monitoring",
     icon: Search,
   },
   {
     title: "Employees",
-    url: "#",
+    url: "/climbs/employees",
     icon: Settings,
   },
   {
     title: "Settings",
-    url: "#",
+    url: "/climbs/settings",
     icon: Settings,
   },
 ];
