@@ -1,5 +1,5 @@
+"use client";
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
-
 import {
   Sidebar,
   SidebarContent,
@@ -10,9 +10,14 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 
-// Menu items.
-const items = [
+interface AppSidebarProps extends React.HTMLAttributes<HTMLDivElement> {
+  // Add any additional props here if needed
+}
+
+const menuItems = [
   {
     title: "Dashboard",
     url: "/climbs/dashboard",
@@ -45,28 +50,40 @@ const items = [
   },
 ];
 
-export function AppSidebar() {
+export function AppSidebar({ className, ...props }: AppSidebarProps) {
   return (
-    <Sidebar>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
-    </Sidebar>
+    <div
+      className={cn(
+        "fixed left-0 top-16 z-40 h-[calc(100vh-4rem)] w-64 border-r bg-background",
+        "md:static md:top-0 md:h-screen",
+        className
+      )}
+      {...props}
+    >
+      <Sidebar>
+        <SidebarContent className="h-full overflow-y-auto mt-16">
+          <SidebarGroup>
+            <SidebarGroupLabel>Menu</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {menuItems.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild>
+                      <Link
+                        href={item.url}
+                        className="flex items-center gap-3 px-2 py-2 text-sm font-medium hover:bg-accent"
+                      >
+                        <item.icon className="h-4 w-4" />
+                        <span>{item.title}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </SidebarContent>
+      </Sidebar>
+    </div>
   );
 }

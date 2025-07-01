@@ -1,51 +1,58 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { User, Menu } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { cn } from "@/lib/utils"; // Make sure you have this utility
 
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {
+  // You can add any additional props here if needed
+}
 
+export function Navbar({ className, ...props }: NavbarProps) {
   return (
-    <nav className="bg-white border-gray-200 dark:bg-blue-800 ">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-6">
-        {/* Brand */}
+    <header
+      className={cn(
+        "sticky top-0 z-50 w-full border-b bg-background",
+        className
+      )}
+      {...props}
+    >
+      <div className="container flex h-16 items-center justify-between px-4">
+        {/* Left side - Logo */}
+        <Link href="/" className="flex items-center gap-2 font-bold">
+          <span>CLIMBS</span>
+        </Link>
 
-        {/* <Link
-          href=""
-          className="flex items-center space-x-3 rtl:space-x-reverse"
-        >
-          <img
-            src="/assets/climbs-logo.jpg"
-            className="h-6 sm:h-9 lg:w-"
-            alt="Climbs-logo"
-          />
-        </Link> */}
-
-        {/* Mobile menu button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-        >
-          <span className="sr-only">Open main menu</span>
-          <svg
-            className="w-5 h-5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 17 14"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M1 1h15M1 7h15M1 13h15"
-            />
-          </svg>
-        </button>
-
-        {/* Menu items */}
+        {/* Right side - User menu */}
+        <div className="flex">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                <Avatar className="h-8 w-8">
+                  <AvatarImage src="/avatars/default.png" alt="User" />
+                  <AvatarFallback>
+                    <User className="h-4 w-4" />
+                  </AvatarFallback>
+                </Avatar>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56" align="end">
+              <DropdownMenuItem>Profile</DropdownMenuItem>
+              <DropdownMenuItem>Settings</DropdownMenuItem>
+              <DropdownMenuItem className="text-red-500">
+                Logout
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
-    </nav>
+    </header>
   );
 }

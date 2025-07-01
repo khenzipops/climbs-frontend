@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import { getUserInfoData } from "@/Services/userinfoData";
 import { UserInfo } from "@/types/userinfo";
 
@@ -7,7 +6,6 @@ const SettingsPage = () => {
 
   return (
     <div>
-      <Navbar />
       <div className="bg-gray-100 min-h-screen p-5">
         <div className="bg-white shadow-md rounded-lg p-6 border">
           {/* Profile Image Section */}

@@ -1,13 +1,9 @@
 import LoginForm from "@/components/Login";
-import Navbar from "@/components/Navbar";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <div className="">
-      <div>
-        <Navbar />
-      </div>
       <div className="min-h-screen bg-gray-100">
         {/* Container for split screen */}
         <div className="flex flex-col lg:flex-row w-full min-h-screen">

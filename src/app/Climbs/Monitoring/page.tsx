@@ -2,7 +2,6 @@
 
 import React from "react";
 import { FaEdit } from "react-icons/fa";
-import Navbar from "@/components/Navbar";
 import { getMonitoringTableData } from "@/Services/monitoringData";
 import { Monitoring } from "@/types/monitoring";
 
@@ -15,9 +14,6 @@ const MonitoringPage = () => {
 
   return (
     <div>
-      <div>
-        <Navbar />
-      </div>
       <div className="p-4">
         <h1 className="text-2xl font-bold mb-4 text-gray-800">Monitoring</h1>
       </div>
