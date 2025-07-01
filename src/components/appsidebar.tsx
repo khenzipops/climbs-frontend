@@ -1,5 +1,5 @@
 "use client";
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import { Calendar, Home, Inbox, Search, Settings, User } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -41,7 +41,7 @@ const menuItems = [
   {
     title: "Employees",
     url: "/climbs/employees",
-    icon: Settings,
+    icon: User,
   },
   {
     title: "Settings",
