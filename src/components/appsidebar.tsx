@@ -1,89 +1,91 @@
-"use client";
-import { Calendar, Home, Inbox, Search, Settings, User } from "lucide-react";
+import * as React from "react";
+
+import { VersionSwitcher } from "@/components/version-switcher";
 import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarRail,
 } from "@/components/ui/sidebar";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
 
-interface AppSidebarProps extends React.HTMLAttributes<HTMLDivElement> {
-  // Add any additional props here if needed
-}
+// This is sample data.
+const data = {
+  versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
+  navMain: [
+    {
+      title: "Menu",
+      url: "#",
+      items: [
+        {
+          title: "Dashboard",
+          url: "#",
+        },
+        {
+          title: "Itinerary Reports",
+          url: "#",
+        },
+        {
+          title: "Weekly Accomplishment",
+          url: "#",
+        },
+        {
+          title: "Weekly Submission",
+          url: "#",
+        },
+        {
+          title: "Employee list",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Admin",
+      url: "#",
+      items: [
+        {
+          title: "Employee",
+          url: "#",
+        },
+      ],
+    },
+  ],
+};
 
-const menuItems = [
-  {
-    title: "Dashboard",
-    url: "/climbs/dashboard",
-    icon: Home,
-  },
-  {
-    title: "Itinerary Reports",
-    url: "/climbs/itinerary-reports",
-    icon: Inbox,
-  },
-  {
-    title: "Weekly Accomplishment",
-    url: "/climbs/weekly-accomplishment",
-    icon: Calendar,
-  },
-  {
-    title: "Monitoring",
-    url: "/climbs/monitoring",
-    icon: Search,
-  },
-  {
-    title: "Employees",
-    url: "/climbs/employees",
-    icon: User,
-  },
-  {
-    title: "Settings",
-    url: "/climbs/settings",
-    icon: Settings,
-  },
-];
-
-export function AppSidebar({ className, ...props }: AppSidebarProps) {
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <div
-      className={cn(
-        "fixed left-0 top-16 z-40 h-[calc(100vh-4rem)] w-64 border-r bg-background",
-        "md:static md:top-0 md:h-screen",
-        className
-      )}
-      {...props}
-    >
-      <Sidebar>
-        <SidebarContent className="h-full overflow-y-auto mt-16">
-          <SidebarGroup>
-            <SidebarGroupLabel>Menu</SidebarGroupLabel>
+    <Sidebar {...props}>
+      <SidebarHeader>
+        <VersionSwitcher
+          versions={data.versions}
+          defaultVersion={data.versions[0]}
+        />
+      </SidebarHeader>
+      <SidebarContent>
+        {/* We create a SidebarGroup for each parent. */}
+        {data.navMain.map((item) => (
+          <SidebarGroup key={item.title}>
+            <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                {menuItems.map((item) => (
+                {item.items.map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild>
-                      <Link
-                        href={item.url}
-                        className="flex items-center gap-3 px-2 py-2 text-sm font-medium hover:bg-accent"
-                      >
-                        <item.icon className="h-4 w-4" />
-                        <span>{item.title}</span>
-                      </Link>
+                      <a href={item.url}>{item.title}</a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
-        </SidebarContent>
-      </Sidebar>
-    </div>
+        ))}
+      </SidebarContent>
+      <SidebarRail />
+    </Sidebar>
   );
 }
