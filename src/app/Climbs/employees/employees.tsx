@@ -28,10 +28,10 @@ export default function Employees() {
             orientation="vertical"
             className="mr-2 data-[orientation=vertical]:h-4"
           />
-          <span></span>
+          <span className="capitalize text-xl">list employee</span>
         </header>
         <div>
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto mt-5">
             <table className="min-w-full bg-white rounded-lg shadow-md">
               <thead className="bg-gray-50">
                 <tr>
