@@ -1,15 +1,8 @@
 "use client";
 
 import { SidebarProvider } from "@/components/ui/sidebar";
-import { useIsMobile } from "@/hooks/use-mobile"; // Make sure you have this
 
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const isMobile = useIsMobile();
-
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
       <div className="flex h-screen flex-col w-full">

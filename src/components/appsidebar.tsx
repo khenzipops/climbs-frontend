@@ -6,8 +6,6 @@ import {
   User2,
   MonitorCheckIcon,
   UserRoundCheck,
-  UserRoundCog,
-  LogOut,
 } from "lucide-react";
 import { VersionSwitcher } from "@/components/version-switcher";
 import {
@@ -32,27 +30,27 @@ const data = {
       items: [
         {
           title: "Dashboard",
-          url: "#",
+          url: "http://localhost:3000/climbs/dashboard",
           icon: LayoutDashboard,
         },
         {
           title: "Itinerary Reports",
-          url: "#",
+          url: "http://localhost:3000/climbs/itinerary-reports",
           icon: NotebookTextIcon,
         },
         {
           title: "Weekly Accomplishment",
-          url: "#",
+          url: "http://localhost:3000/climbs/weekly-accomplishment",
           icon: TrophyIcon,
         },
         {
           title: "Employee Monitoring",
-          url: "#",
+          url: "monitoring",
           icon: MonitorCheckIcon,
         },
         {
-          title: "Employee list",
-          url: "#",
+          title: "List Employee",
+          url: "employees",
           icon: UserRoundCheck,
         },
       ],
