@@ -18,11 +18,12 @@ export default function Dashboard() {
             orientation="vertical"
             className="mr-2 data-[orientation=vertical]:h-4"
           />
+          <span className="text-2xl">Dashboard</span>
         </header>
         {/* dashboard context */}
         <div className="space-y-6">
           {/* Weekly Accomplishments Summary */}
-          <Card>
+          <Card className="mt-4">
             <CardHeader>
               <CardTitle>Weekly Accomplishments</CardTitle>
             </CardHeader>
