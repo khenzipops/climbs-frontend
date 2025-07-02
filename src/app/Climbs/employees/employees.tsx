@@ -28,10 +28,9 @@ export default function Employees() {
             orientation="vertical"
             className="mr-2 data-[orientation=vertical]:h-4"
           />
+          <span></span>
         </header>
         <div>
-          <h1 className="text-2xl font-bold mb-4 text-gray-800">Employees</h1>
-
           <div className="overflow-x-auto">
             <table className="min-w-full bg-white rounded-lg shadow-md">
               <thead className="bg-gray-50">

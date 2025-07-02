@@ -18,7 +18,7 @@ export default function Dashboard() {
             orientation="vertical"
             className="mr-2 data-[orientation=vertical]:h-4"
           />
-          <span className="text-2xl">Dashboard</span>
+          <span className="text-xl">Dashboard</span>
         </header>
         {/* dashboard context */}
         <div className="space-y-6">

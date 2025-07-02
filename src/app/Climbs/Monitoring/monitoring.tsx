@@ -28,13 +28,10 @@ const MonitoringPage = () => {
             orientation="vertical"
             className="mr-2 data-[orientation=vertical]:h-4"
           />
+          <span className="capitalize text-lg">employe monitoring</span>
         </header>
         <div>
-          <div className="p-4">
-            <h1 className="text-2xl font-bold mb-4 text-gray-800">
-              Monitoring
-            </h1>
-          </div>
+          <div className="p-4"></div>
           <div className="overflow-x-auto m-3 p-8">
             <table className="min-w-full bg-white rounded-lg shadow-md">
               <thead className="bg-gray-50">
