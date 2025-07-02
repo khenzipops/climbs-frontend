@@ -1,5 +1,14 @@
 import * as React from "react";
-
+import {
+  LayoutDashboard,
+  NotebookTextIcon,
+  TrophyIcon,
+  User2,
+  MonitorCheckIcon,
+  UserRoundCheck,
+  UserRoundCog,
+  LogOut,
+} from "lucide-react";
 import { VersionSwitcher } from "@/components/version-switcher";
 import {
   Sidebar,
@@ -16,7 +25,6 @@ import {
 
 // This is sample data.
 const data = {
-  versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
   navMain: [
     {
       title: "Menu",
@@ -25,22 +33,27 @@ const data = {
         {
           title: "Dashboard",
           url: "#",
+          icon: LayoutDashboard,
         },
         {
           title: "Itinerary Reports",
           url: "#",
+          icon: NotebookTextIcon,
         },
         {
           title: "Weekly Accomplishment",
           url: "#",
+          icon: TrophyIcon,
         },
         {
-          title: "Weekly Submission",
+          title: "Employee Monitoring",
           url: "#",
+          icon: MonitorCheckIcon,
         },
         {
           title: "Employee list",
           url: "#",
+          icon: UserRoundCheck,
         },
       ],
     },
@@ -51,6 +64,7 @@ const data = {
         {
           title: "Employee",
           url: "#",
+          icon: User2,
         },
       ],
     },
@@ -73,7 +87,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 {item.items.map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild>
-                      <a href={item.url}>{item.title}</a>
+                      <a href={item.url}>
+                        <item.icon /> {item.title}
+                      </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}

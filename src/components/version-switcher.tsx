@@ -1,7 +1,13 @@
 "use client";
 
 import * as React from "react";
-import { ChevronsUpDown, User2 } from "lucide-react";
+import {
+  ChevronsUpDown,
+  User2,
+  LogOut,
+  UserRoundCog,
+  UserPen,
+} from "lucide-react";
 
 import {
   DropdownMenu,
@@ -34,9 +40,18 @@ export function VersionSwitcher() {
               </div>
               <ChevronsUpDown className="ml-auto" />
               <DropdownMenuContent className="w-56">
-                <DropdownMenuItem>View Profile</DropdownMenuItem>
-                <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuItem>Sign out</DropdownMenuItem>
+                <DropdownMenuItem>
+                  <UserPen />
+                  View Profile
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <UserRoundCog />
+                  Settings
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <LogOut />
+                  Sign out
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </SidebarMenuButton>
           </DropdownMenuTrigger>
