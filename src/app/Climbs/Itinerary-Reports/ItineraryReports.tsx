@@ -21,6 +21,7 @@ export default function ItineraryReports() {
             orientation="vertical"
             className="mr-2 data-[orientation=vertical]:h-4"
           />
+          <span className="capitalize text-xl">Itinerary Reports</span>
         </header>
         <div className="bg-white p-10">
           <div className="border-2 p-2 rounded-lg">
