@@ -35,6 +35,7 @@ export default function WeeklyAccomplishment() {
             orientation="vertical"
             className="mr-2 data-[orientation=vertical]:h-4"
           />
+          <span className="capitalize text-xl">Weekly Accomplishment</span>
         </header>
         <div className="">
           <div className=""></div>
