@@ -9,7 +9,8 @@ import {
 } from "@/components/ui/sidebar";
 import React from "react";
 import ItineraryTable from "@/components/ItineraryTable";
-import { Printer, Calendar, Plus } from "lucide-react";
+import { Calendar as Calendars, Printer, Plus } from "lucide-react";
+import DatePicker from "@/components/shared/DatePicker";
 
 export default function ItineraryReports() {
   return (
@@ -30,16 +31,13 @@ export default function ItineraryReports() {
               <span>Date of Submission:</span>
               <span>12/12/2025</span>
             </div>
-            <div className="space-x-2">
+            <div className="space-x-2 flex">
               {/* button */}
               <Button className="bg-white border border-gray-400 text-gray-700 hover:text-gray-800 hover:bg-gray-100 cursor-pointer">
                 <Printer />
                 Print
               </Button>
-              <Button className="bg-white border border-gray-400 text-gray-700 hover:text-gray-800 hover:bg-gray-100 cursor-pointer">
-                <Calendar />
-                Pick Date
-              </Button>
+              <DatePicker />
               <Button className="bg-white border border-gray-400 text-gray-700 hover:text-gray-800 hover:bg-gray-100 cursor-pointer">
                 <Plus /> Add
               </Button>
