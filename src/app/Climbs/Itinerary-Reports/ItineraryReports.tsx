@@ -29,7 +29,7 @@ export default function ItineraryReports() {
             <div className="space-x-2">
               {/* button */}
               <Button> Print</Button>
-              <Button> Add </Button>
+              <Button className=""> Add </Button>
             </div>
           </div>
         </div>
