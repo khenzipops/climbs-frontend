@@ -8,14 +8,14 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import React from "react";
-import { Table } from "lucide-react";
-import { Input } from "@/components/ui/input";
+import ItineraryTable from "@/components/ItineraryTable";
+import { Printer, Calendar, Plus } from "lucide-react";
 
 export default function ItineraryReports() {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <SidebarInset>
+      <SidebarInset className="overflow-x-hidden">
         <header className="flex h-10 shrink-0 items-center gap-2 border-b px-4">
           <SidebarTrigger className="-ml-1" />
           <Separator
@@ -24,20 +24,30 @@ export default function ItineraryReports() {
           />
           <span className="capitalize text-xl">Itinerary Reports</span>
         </header>
-        <div className="">
-          <div className="flex items-center justify-between p-2">
+        <div className="space-y-2 mt-5">
+          <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2 ml-2">
               <span>Date of Submission:</span>
               <span>12/12/2025</span>
             </div>
             <div className="space-x-2">
               {/* button */}
-              <Button> Print</Button>
-              <Button className=""> Add Date </Button>
-              <Button className=""> Add </Button>
+              <Button className="bg-white border border-gray-400 text-gray-700 hover:text-gray-800 hover:bg-gray-100 cursor-pointer">
+                <Printer />
+                Print
+              </Button>
+              <Button className="bg-white border border-gray-400 text-gray-700 hover:text-gray-800 hover:bg-gray-100 cursor-pointer">
+                <Calendar />
+                Pick Date
+              </Button>
+              <Button className="bg-white border border-gray-400 text-gray-700 hover:text-gray-800 hover:bg-gray-100 cursor-pointer">
+                <Plus /> Add
+              </Button>
             </div>
             {/* Itinerary report table below */}
-            <div></div>
+          </div>
+          <div className="">
+            <ItineraryTable />
           </div>
         </div>
       </SidebarInset>

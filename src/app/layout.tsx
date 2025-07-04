@@ -4,11 +4,11 @@ import "./globals.css";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: "300",
+  weight: "400",
   style: ["italic", "normal"],
   display: "optional",
   preload: false,
-  variable: "--font-inter",
+  variable: "--font-poppins",
 });
 
 export const metadata: Metadata = {
@@ -22,10 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${poppins.className} ${poppins.className} antialiased`}>
-        {children}
-      </body>
+    <html lang="en" className={poppins.variable}>
+      <body className="font-poppins text-base antialiased">{children}</body>
     </html>
   );
 }
