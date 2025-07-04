@@ -6,12 +6,15 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useState } from "react";
+
 import { Button } from "../ui/button";
 
-export default function DatePicker() {
-  const [date, setDate] = useState<Date | undefined>(new Date());
+type DatePickerProps = {
+  value: Date | undefined;
+  onChange: (date: Date | undefined) => void;
+};
 
+export default function DatePicker({ value, onChange }: DatePickerProps) {
   return (
     <Popover>
       <PopoverTrigger>
@@ -21,21 +24,7 @@ export default function DatePicker() {
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-2">
-        <Calendar mode="single" selected={date} onSelect={setDate} />
-        <div className="flex space-x-2 justify-center items-center">
-          <Button
-            variant={"success"}
-            className="hover:bg-green-600 hover:text-white"
-          >
-            Save
-          </Button>
-          <Button
-            variant={"destructive"}
-            className="hover:bg-red-800 hover:text-white"
-          >
-            Cancel
-          </Button>
-        </div>
+        <Calendar mode="single" selected={value} onSelect={onChange} />
       </PopoverContent>
     </Popover>
   );

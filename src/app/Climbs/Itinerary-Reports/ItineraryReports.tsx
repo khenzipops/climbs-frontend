@@ -11,8 +11,12 @@ import React from "react";
 import ItineraryTable from "@/components/ItineraryTable";
 import { Calendar as Calendars, Printer, Plus } from "lucide-react";
 import DatePicker from "@/components/shared/DatePicker";
+import { useState } from "react";
 
 export default function ItineraryReports() {
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(
+    new Date()
+  );
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -28,8 +32,8 @@ export default function ItineraryReports() {
         <div className="space-y-2 mt-5">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2 ml-2">
-              <span>Date of Submission:</span>
-              <span>12/12/2025</span>
+              <span> Submission Date:</span>
+              <span> {selectedDate?.toDateString()}</span>
             </div>
             <div className="space-x-2 flex">
               {/* button */}
@@ -37,7 +41,7 @@ export default function ItineraryReports() {
                 <Printer />
                 Print
               </Button>
-              <DatePicker />
+              <DatePicker value={selectedDate} onChange={setSelectedDate} />
               <Button className="bg-white border border-gray-400 text-gray-700 hover:text-gray-800 hover:bg-gray-100 cursor-pointer">
                 <Plus /> Add
               </Button>
