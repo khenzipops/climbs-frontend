@@ -40,15 +40,15 @@ export function VersionSwitcher() {
               </div>
               <ChevronsUpDown className="ml-auto" />
               <DropdownMenuContent className="w-56">
-                <DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-indigo-800 hover:text-white">
                   <UserPen />
                   View Profile
                 </DropdownMenuItem>
-                <DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-indigo-800 hover:text-white">
                   <UserRoundCog />
                   Settings
                 </DropdownMenuItem>
-                <DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-indigo-800 hover:text-white">
                   <LogOut />
                   Sign out
                 </DropdownMenuItem>

@@ -72,10 +72,10 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar {...props}>
-      <SidebarHeader>
+      <SidebarHeader className="bg-white">
         <VersionSwitcher />
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="bg-white">
         {/* We create a SidebarGroup for each parent. */}
         {data.navMain.map((item) => (
           <SidebarGroup key={item.title}>
@@ -84,7 +84,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               <SidebarMenu>
                 {item.items.map((item) => (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild>
+                    <SidebarMenuButton
+                      className="hover:bg-indigo-800 hover:text-white"
+                      asChild
+                    >
                       <a href={item.url}>
                         <item.icon /> {item.title}
                       </a>
