@@ -7,8 +7,6 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import React from "react";
-import ItineraryTable from "@/components/ItineraryTable";
-import DatePickerComponent from "@/components/ItineraryCalendar";
 
 export default function ItineraryReports() {
   return (
@@ -23,33 +21,16 @@ export default function ItineraryReports() {
           />
           <span className="capitalize text-xl">Itinerary Reports</span>
         </header>
-        <div className="bg-white p-10">
-          <div className="border-2 p-2 rounded-lg">
-            {/* Header Section */}
-            <div className="flex flex-col md:flex-row justify-between gap-4 mb-6">
-              <h1 className="text-gray-600 text-md font-medium">
-                Date of Submission:
-              </h1>
-
-              {/* Actions Group */}
-              <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-                <div className="sm:order-1">
-                  <DatePickerComponent />
-                </div>
-
-                <div className="flex gap-2 sm:ml-auto">
-                  <ActionButton label="Print" />
-                  <ActionButton label="Add" />
-                </div>
-              </div>
-            </div>
-
-            {/* Table Section */}
-            <div className="overflow-x-auto">
-              <ItineraryTable />
-            </div>
-          </div>
-        </div>
+       <div className="">
+       <div className="flex items-center justify-between p-2">
+         <span>Date of Submission:</span>
+         <input type="text" />
+         <div className="space-x-2">
+          <button className="border-2 p-1 rounded-sm">Print</button>
+         <button className="border-2 p-1 rounded-sm">Add</button>
+         </div>
+       </div>
+       </div>
       </SidebarInset>
     </SidebarProvider>
   );
