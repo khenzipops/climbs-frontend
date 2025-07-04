@@ -30,27 +30,27 @@ const data = {
       items: [
         {
           title: "Dashboard",
-          url: "http://localhost:3000/climbs/dashboard",
+          url: "http://localhost:3000/dashboard",
           icon: LayoutDashboard,
         },
         {
           title: "Itinerary Reports",
-          url: "http://localhost:3000/climbs/itinerary-reports",
+          url: "http://localhost:3000/itinerary-reports",
           icon: NotebookTextIcon,
         },
         {
           title: "Weekly Accomplishment",
-          url: "http://localhost:3000/climbs/weekly-accomplishment",
+          url: "http://localhost:3000/weekly-accomplishment",
           icon: TrophyIcon,
         },
         {
           title: "Employee Monitoring",
-          url: "monitoring",
+          url: "http://localhost:3000/monitoring",
           icon: MonitorCheckIcon,
         },
         {
           title: "List Employee",
-          url: "employees",
+          url: "http://localhost:3000/employees",
           icon: UserRoundCheck,
         },
       ],

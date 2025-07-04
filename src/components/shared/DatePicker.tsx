@@ -17,7 +17,7 @@ type DatePickerProps = {
 export default function DatePicker({ value, onChange }: DatePickerProps) {
   return (
     <Popover>
-      <PopoverTrigger>
+      <PopoverTrigger asChild>
         <Button className="bg-white border border-gray-400 text-gray-700 hover:text-gray-800 hover:bg-gray-100 cursor-pointer">
           <Calendars />
           Pick a Date
