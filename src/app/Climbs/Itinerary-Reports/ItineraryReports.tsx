@@ -1,6 +1,7 @@
 "use client";
 import { AppSidebar } from "@/components/appsidebar";
 import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
 import {
   SidebarInset,
   SidebarProvider,
@@ -21,16 +22,17 @@ export default function ItineraryReports() {
           />
           <span className="capitalize text-xl">Itinerary Reports</span>
         </header>
-       <div className="">
-       <div className="flex items-center justify-between p-2">
-         <span>Date of Submission:</span>
-         <input type="text" />
-         <div className="space-x-2">
-          <button className="border-2 p-1 rounded-sm">Print</button>
-         <button className="border-2 p-1 rounded-sm">Add</button>
-         </div>
-       </div>
-       </div>
+        <div className="">
+          <div className="flex items-center justify-between p-2">
+            <span>Date of Submission:</span>
+            <input type="text" />
+            <div className="space-x-2">
+              {/* button */}
+              <Button> Print</Button>
+              <Button> Add </Button>
+            </div>
+          </div>
+        </div>
       </SidebarInset>
     </SidebarProvider>
   );
