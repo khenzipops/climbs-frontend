@@ -10,7 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { User, Lock, Mail, MapPin } from "lucide-react";
+import { User, Lock, Mail, MapPin, Phone, ArrowLeft } from "lucide-react";
 
 export default function SettingsPage() {
   return (
@@ -22,6 +22,13 @@ export default function SettingsPage() {
         </p>
       </div>
       <Separator />
+      <a
+        href="/dashboard"
+        className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground"
+      >
+        <ArrowLeft className="h-4 w-4" />
+        Back to Dashboard
+      </a>
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="lg:col-span-1">
           <Card>
@@ -55,10 +62,47 @@ export default function SettingsPage() {
                     id="username"
                     defaultValue="Climbs"
                     className="pl-10"
+                    autoComplete="username"
+                  />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="first-name">First Name</Label>
+                <div className="relative">
+                  <User className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                  <Input
+                    id="first-name"
+                    defaultValue="Juan"
+                    className="pl-10"
+                  />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="last-name">Last Name</Label>
+                <div className="relative">
+                  <User className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                  <Input
+                    id="last-name"
+                    defaultValue="Dela Cruz"
+                    className="pl-10"
+                  />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="cellphone">Cellphone Number</Label>
+                <div className="relative">
+                  <Phone className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                  <Input
+                    id="cellphone"
+                    defaultValue="09123456789"
+                    className="pl-10"
                   />
                 </div>
               </div>
             </CardContent>
+            <CardFooter>
+              <Button>Save Changes</Button>
+            </CardFooter>
           </Card>
         </div>
         <div className="lg:col-span-2">

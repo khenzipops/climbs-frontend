@@ -19,6 +19,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
+  SidebarFooter,
 } from "@/components/ui/sidebar";
 
 // This is sample data.
@@ -100,6 +101,19 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         ))}
       </SidebarContent>
       <SidebarRail />
+      <SidebarFooter>
+        <div className="flex items-center gap-2">
+          <img
+            src="/assets/climbs-logo.jpg"
+            alt="User avatar"
+            className="size-8 rounded-full"
+          />
+          <div className="flex flex-col">
+            <span className="text-sm font-semibold">Climbs</span>
+            <span className="text-xs text-gray-500">climbs@example.com</span>
+          </div>
+        </div>
+      </SidebarFooter>
     </Sidebar>
   );
 }
