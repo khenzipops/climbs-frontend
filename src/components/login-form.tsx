@@ -3,11 +3,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FaGoogle } from "react-icons/fa";
+import Image from "next/image";
+import { useState } from "react";
+import { Eye, EyeClosed } from "lucide-react";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const [showPassword, SetshowPassword] = useState(false);
+
   return (
     <div className={cn("grid gap-6 p-6 md:p-8 lg:p-10", className)} {...props}>
       <div className="flex flex-col items-center gap-4">
@@ -30,21 +35,45 @@ export function LoginForm({
               type="email"
               placeholder="username@example.com"
               required
+              className="h-10"
             />
           </div>
           <div className="grid gap-2">
             <div className="flex items-center">
               <Label htmlFor="password">Password</Label>
             </div>
-            <Input id="password" type="password" required />
+            <div className="relative">
+              <Input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                required
+                className="p-2 h-10"
+              />
+              <button
+                type="button"
+                onClick={() => SetshowPassword((prev) => !prev)}
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-xl text-gray-500"
+                tabIndex={-1}
+              >
+                {showPassword ? (
+                  <Eye className="w-4 h-4" />
+                ) : (
+                  <EyeClosed className="w-4 h-4" />
+                )}
+              </button>
+            </div>
             <a href="#" className="ml-auto inline-block text-sm underline">
               Forgot your password?
             </a>
           </div>
-          <Button type="submit" variant="outline" className="cursor-pointer">
+          <Button
+            type="submit"
+            variant="outline"
+            className="cursor-pointer h-10"
+          >
             Login
           </Button>
-          <Button variant="outline" className="w-ful">
+          <Button variant="outline" className="w-ful h-10">
             <FaGoogle className="mr-2 text-red-600 " />
             Login with Google
           </Button>
