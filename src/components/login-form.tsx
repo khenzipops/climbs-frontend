@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import Image from "next/image";
+import { FaGoogle } from "react-icons/fa";
 
 export function LoginForm({
   className,
@@ -11,15 +11,11 @@ export function LoginForm({
   return (
     <div className={cn("grid gap-6 p-6 md:p-8 lg:p-10", className)} {...props}>
       <div className="flex flex-col items-center gap-4">
-        <Image
-          src="/assets/climbs-logo.jpg"
-          alt="Climbs Logo"
-          width={80}
-          height={80}
-          className="rounded-full"
-        />
-        <div className="text-center">
-          <h1 className="text-3xl font-bold">Login</h1>
+        <div className="text-center space-y-4">
+          <h1 className="text-2xl font-bold uppercase">
+            Welcome to Itinererary
+          </h1>
+          <h1 className="text2xl font-bold uppercase"> Tracking system</h1>
           <p className="text-balance text-muted-foreground">
             Enter your email below to login to your account
           </p>
@@ -32,23 +28,24 @@ export function LoginForm({
             <Input
               id="email"
               type="email"
-              placeholder="m@example.com"
+              placeholder="username@example.com"
               required
             />
           </div>
           <div className="grid gap-2">
             <div className="flex items-center">
               <Label htmlFor="password">Password</Label>
-              <a href="#" className="ml-auto inline-block text-sm underline">
-                Forgot your password?
-              </a>
             </div>
             <Input id="password" type="password" required />
+            <a href="#" className="ml-auto inline-block text-sm underline">
+              Forgot your password?
+            </a>
           </div>
-          <Button type="submit" className="w-full">
+          <Button type="submit" variant="outline" className="cursor-pointer">
             Login
           </Button>
-          <Button variant="outline" className="w-full">
+          <Button variant="outline" className="w-ful">
+            <FaGoogle className="mr-2 text-red-600 " />
             Login with Google
           </Button>
         </div>
