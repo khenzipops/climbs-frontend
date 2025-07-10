@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/sidebar";
 import React, { useRef } from "react";
 import WeeklyTable from "@/components/WeeklyTable";
-import DatePickerComponent from "@/components/WeeklyCalendar";
 
 export default function WeeklyAccomplishment() {
   const printRef = useRef<HTMLDivElement>(null);
@@ -40,16 +39,14 @@ export default function WeeklyAccomplishment() {
         <div className="">
           <div className=""></div>
           <div className="flex flex-col bg-white">
-            <div className="p-2 m-10 border-2">
+            <div className="m-10 ">
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
                 <h1 className="text-gray-600 text-md ml-4">
                   Date of Submission:
                 </h1>
 
                 <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-                  <div className="order-2 sm:order-1">
-                    <DatePickerComponent />
-                  </div>
+                  <div className="order-2 sm:order-1"></div>
 
                   <div className="flex gap-2 order-1 sm:order-2 ml-auto sm:ml-0">
                     <button

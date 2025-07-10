@@ -36,8 +36,6 @@ export default function CompactDatePickerRow() {
               popperPlacement="bottom-start"
               renderCustomHeader={({
                 date,
-                changeYear,
-                changeMonth,
                 decreaseMonth,
                 increaseMonth,
                 prevMonthButtonDisabled,
