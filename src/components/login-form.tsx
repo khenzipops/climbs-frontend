@@ -16,11 +16,15 @@ export function LoginForm({
   return (
     <div className={cn("grid gap-6 p-6 md:p-8 lg:p-10", className)} {...props}>
       <div className="flex flex-col items-center gap-4">
+        <Image
+          src="/assets/trophy.png"
+          alt="Login illustration"
+          width={120}
+          height={120}
+          className="rounded-full"
+        />
         <div className="text-center space-y-4">
-          <h1 className="text-2xl font-bold uppercase">
-            Welcome to Itinererary
-          </h1>
-          <h1 className="text2xl font-bold uppercase"> Tracking system</h1>
+          <h1 className="text-2xl font-bold uppercase">itraching system</h1>
           <p className="text-balance text-muted-foreground">
             Enter your email below to login to your account
           </p>

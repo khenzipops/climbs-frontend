@@ -1,5 +1,4 @@
 import Lottie from "react-lottie-player";
-import animationData from "../../public/animation/business-team.json"; // adjust the path as needed
 import { useEffect, useState } from "react";
 
 export default function MyAnimation() {
@@ -11,6 +10,11 @@ export default function MyAnimation() {
       .then(setAnimationData);
   }, []);
   return animationData ? (
-    <Lottie loop animationData={animationData} play className="w-fit" />
+    <Lottie
+      loop
+      animationData={animationData}
+      play
+      className="-translate-y-30"
+    />
   ) : null;
 }
