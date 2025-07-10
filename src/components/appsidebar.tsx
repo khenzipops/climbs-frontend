@@ -109,8 +109,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             className="size-8 rounded-full"
           />
           <div className="flex flex-col">
-            <span className="text-sm font-semibold">Climbs</span>
-            <span className="text-xs text-gray-500">climbs@example.com</span>
+            <span className="text-sm font-semibold">Itraching</span>
+            <span className="text-xs text-gray-500">Itraching@example.com</span>
           </div>
         </div>
       </SidebarFooter>
